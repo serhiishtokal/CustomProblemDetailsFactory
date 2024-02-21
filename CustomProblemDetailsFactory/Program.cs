@@ -1,5 +1,6 @@
 using CustomProblemDetailsFactory.Problems;
 using CustomProblemDetailsFactory.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<WeatherService>();
 builder.Services.AddSingleton<ProblemDetailsFactory, WeatherProblemDetailsFactory>();
-    
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 var app = builder.Build();
 
