@@ -15,6 +15,12 @@ public class WeatherService
             return WeatherErrors.WeatherNotFoundForDate(request.DateTimeOffset);
         }
         
+        if(request.DateTimeOffset.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
+        {
+            //some unexpected exception
+            throw new Exception("Weekend is not supported");
+        }
+        
         return new Weather(14);
     }
 }
